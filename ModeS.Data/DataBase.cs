@@ -33,7 +33,7 @@ namespace ModeS.Data
                 dataCoonection.Open();
                 var sqlCommand = new MySqlCommand("SELECT * FROM Country", dataCoonection);
                 var dataResult = sqlCommand.ExecuteReader();
-
+                
                 while (dataResult.Read())
                 {
                     result.Add(dataResult.GetString(0));
