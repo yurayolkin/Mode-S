@@ -14,12 +14,7 @@ namespace ModeS.ViewModel
         {
             get
             {
-                if (_mainView == null)
-                {
-                    _mainView = new MainView(ServiceLoactor.Resolve<IData>());
-                }
-
-                return _mainView;
+               return _mainView ?? (_mainView = new MainView(ServiceLoactor.Resolve<IData>()));
             }
         }
     }
