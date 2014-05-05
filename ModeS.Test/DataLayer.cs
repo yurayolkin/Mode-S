@@ -48,4 +48,4 @@ namespace ModeS.Test
             Assert.AreNotEqual(0, result.Count);
         }
     }
-}//Second commit
+}
