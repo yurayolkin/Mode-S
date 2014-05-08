@@ -2,9 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:validators="clr-namespace:ModeS.ViewModel.Validators;assembly=ModeS.ViewModel"
-        Title="MainWindow" Height="350" Width="535"
+        Title="MainWindow" Height="550" Width="535"
         DataContext="{Binding Main, Source={StaticResource Loc}}">
     <Window.Resources>
+        <ContextMenu x:Key="DetailsMenu">
+           <MenuItem Header="Aircraft details" Command="{Binding AirCraftDetailsCommand}"/>
+            <MenuItem Header="Aircraft history" Command="{Binding AirCraftHistoryCommand}"/>
+            <MenuItem Header="Map" Command="{Binding MapCommand}"/>
+        </ContextMenu>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -50,6 +55,6 @@
                 <ComboBox ItemsSource="{Binding Operators}" SelectedItem="{Binding OpatorSelect}" Margin="5" Width="100"/>
             </StackPanel>
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Flights, UpdateSourceTrigger=PropertyChanged}"/>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Flights, UpdateSourceTrigger=PropertyChanged}" ContextMenu="{StaticResource DetailsMenu}"/>
     </Grid>
 </Window>

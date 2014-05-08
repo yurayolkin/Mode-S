@@ -4,7 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Proxies;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using ModeS.Data;
 
 namespace ModeS.ViewModel
@@ -19,9 +23,12 @@ namespace ModeS.ViewModel
 
         public ObservableCollection<string> Operators { get; set; }
 
-        public ObservableCollection<string> Serials { get; set; } 
-        
+        public ObservableCollection<string> Serials { get; set; }
+
+        public ContextMenu ContextMenu { get; set; }
+
         private DateTime _dateTimeStart;
+
         public DateTime DateTimeStart
         {
             get { return _dateTimeStart; }
@@ -33,6 +40,7 @@ namespace ModeS.ViewModel
         }
 
         private DateTime _dateTimeEnd;
+
         public DateTime DateTimeEnd
         {
             get { return _dateTimeEnd; }
@@ -44,6 +52,7 @@ namespace ModeS.ViewModel
         }
 
         private string _countrySelect;
+
         public string CountrySelect
         {
             get { return _countrySelect; }
@@ -55,6 +64,7 @@ namespace ModeS.ViewModel
         }
 
         private string _airCraftSelect;
+
         public string AirCraftSelect
         {
             get { return _airCraftSelect; }
@@ -72,6 +82,7 @@ namespace ModeS.ViewModel
         }
 
         private string _serialSelect;
+
         public string SerialSelect
         {
             get { return _serialSelect; }
@@ -83,6 +94,7 @@ namespace ModeS.ViewModel
         }
 
         private RelayCommand _queryCommand;
+
         public RelayCommand QueryCommand
         {
             get
@@ -91,7 +103,8 @@ namespace ModeS.ViewModel
                 {
                     _queryCommand = new RelayCommand((o) =>
                     {
-                        var flights = _data.GetFlights(DateTimeStart, DateTimeEnd, CountrySelect, AirCraftSelect, SerialSelect, OpatorSelect);
+                        var flights = _data.GetFlights(DateTimeStart, DateTimeEnd, CountrySelect, AirCraftSelect,
+                            SerialSelect, OpatorSelect);
                         if (flights.Count != 0)
                         {
                             Flights.Clear();
@@ -107,7 +120,29 @@ namespace ModeS.ViewModel
             }
         }
 
+        private RelayCommand _aircraftHistory;
+
+        public RelayCommand AirCraftHistoryCommand
+        {
+            get { return _aircraftHistory ?? (new RelayCommand((o) => { }, null)); }
+        }
+
+        private RelayCommand _aircraftDetails;
+
+        public RelayCommand AirCraftDetailsCommand
+        {
+            get { return _aircraftDetails ?? (new RelayCommand((o) => { }, null)); }
+        }
+
+        private RelayCommand _map;
+
+        public RelayCommand MapCommand
+        {
+            get { return _map ?? (new RelayCommand((o) => { }, null)); }
+        }
+
         private string _operatorSelect;
+
         public string OpatorSelect
         {
             get { return _operatorSelect; }
@@ -127,7 +162,9 @@ namespace ModeS.ViewModel
         {
             _data = data;
             _dateTimeStart = _dateTimeEnd = DateTime.Now;
-            Flights = new ObservableCollection<Flight>(data.GetFlights(_dateTimeStart, _dateTimeEnd, string.Empty, string.Empty, string.Empty, string.Empty));
+            Flights =
+                new ObservableCollection<Flight>(data.GetFlights(_dateTimeStart, _dateTimeEnd, string.Empty,
+                    string.Empty, string.Empty, string.Empty));
             Countries = new ObservableCollection<string>(data.GetCountriList());
             AirCrafts = new ObservableCollection<string>(data.GetAirCraftList());
             Operators = new ObservableCollection<string>(data.GetOperators());
