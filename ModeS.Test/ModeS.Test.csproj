@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -55,12 +56,17 @@
   <ItemGroup>
     <Compile Include="DataLayer.cs" />
     <Compile Include="DataLayerMock.cs" />
+    <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeS.Data\ModeS.Data.csproj">
       <Project>{b1de9402-e913-48dd-9a0f-3dd09e90655c}</Project>
       <Name>ModeS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModeS.ViewModel\ModeS.ViewModel.csproj">
+      <Project>{98CC4DAB-0D80-4FDF-9D6F-FCD1310DF4DC}</Project>
+      <Name>ModeS.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
