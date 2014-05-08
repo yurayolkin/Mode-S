@@ -10,10 +10,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ModeS.Data;
+using ModeS.ViewModel.Core;
 
 namespace ModeS.ViewModel
 {
-    public class MainView : Notify
+    public class MainViewModel : Notify
     {
         public ObservableCollection<Flight> Flights { get; set; }
 
@@ -93,6 +94,21 @@ namespace ModeS.ViewModel
             }
         }
 
+        private Flight _selectFlight;
+
+        public Flight SelectFlight
+        {
+            get { return _selectFlight; }
+            set
+            {
+                if (_selectFlight != value)
+                {
+                    _selectFlight = value;
+                    OnPropertyChanged("FlightSelect");
+                }
+            }
+        }
+
         private RelayCommand _queryCommand;
 
         public RelayCommand QueryCommand
@@ -124,7 +140,10 @@ namespace ModeS.ViewModel
 
         public RelayCommand AirCraftHistoryCommand
         {
-            get { return _aircraftHistory ?? (new RelayCommand((o) => { }, null)); }
+            get { return _aircraftHistory ?? (new RelayCommand((o) =>
+            {
+                Messager.Send("AircraftHistory", SelectFlight);
+            }, null)); }
         }
 
         private RelayCommand _aircraftDetails;
@@ -158,7 +177,7 @@ namespace ModeS.ViewModel
 
         private readonly IData _data;
 
-        public MainView(IData data)
+        public MainViewModel(IData data)
         {
             _data = data;
             _dateTimeStart = _dateTimeEnd = DateTime.Now;
@@ -172,7 +191,7 @@ namespace ModeS.ViewModel
             DateTimeEnd = DateTimeStart = DateTime.Now;
         }
 
-        public MainView() : this(ServiceLoactor.Resolve<IData>())
+        public MainViewModel() : this(ServiceLoactor.Resolve<IData>())
         {
         }
     }

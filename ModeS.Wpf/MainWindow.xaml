@@ -55,6 +55,6 @@
                 <ComboBox ItemsSource="{Binding Operators}" SelectedItem="{Binding OpatorSelect}" Margin="5" Width="100"/>
             </StackPanel>
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Flights, UpdateSourceTrigger=PropertyChanged}" ContextMenu="{StaticResource DetailsMenu}"/>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Flights, UpdateSourceTrigger=PropertyChanged}" ContextMenu="{StaticResource DetailsMenu}" SelectedItem="{Binding SelectFlight}"/>
     </Grid>
 </Window>

@@ -43,8 +43,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Messager.cs" />
     <Compile Include="Core\RelayCommand.cs" />
-    <Compile Include="MainView.cs" />
+    <Compile Include="HistoryDetailsModelView.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="Notify.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

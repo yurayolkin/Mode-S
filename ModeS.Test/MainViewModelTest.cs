@@ -12,7 +12,7 @@ namespace ModeS.Test
         {
             var data = new DataLayerMock();
             var aircraftList = data.GetAirCraftList();
-            var mainview = new MainView(data);
+            var mainview = new MainViewModel(data);
             CollectionAssert.AreEqual(aircraftList, mainview.AirCrafts);
         }
 
@@ -21,7 +21,7 @@ namespace ModeS.Test
         {
             var data = new DataLayerMock();
             var countries = data.GetCountriList();
-            var mainView = new MainView(data);
+            var mainView = new MainViewModel(data);
             CollectionAssert.AreEqual(countries, mainView.Countries);
         }
 
@@ -30,7 +30,7 @@ namespace ModeS.Test
         {
             var data = new DataLayerMock();
             var oper = data.GetOperators();
-            var mainView = new MainView(data);
+            var mainView = new MainViewModel(data);
             CollectionAssert.AreEqual(oper, mainView.Operators);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using ModeS.Data;
+using ModeS.ViewModel.Core;
 
 namespace ModeS.ViewModel
 {
@@ -7,15 +8,23 @@ namespace ModeS.ViewModel
         public ViewModelLocatror()
         {
             ServiceLoactor.Register<IData, DataBase>();
+            ServiceLoactor.Register<Messager>();
+            ServiceLoactor.Register<HistoryDetailsModelView>();
         }
 
-        private MainView _mainView;
-        public MainView Main
+        private MainViewModel _mainViewModel;
+        public MainViewModel Main
         {
             get
             {
-               return _mainView ?? (_mainView = new MainView(ServiceLoactor.Resolve<IData>()));
+               return _mainViewModel ?? (_mainViewModel = new MainViewModel(ServiceLoactor.Resolve<IData>()));
             }
+        }
+
+        private HistoryDetailsModelView _historyDetailsModelView;
+        public HistoryDetailsModelView History
+        {
+            get { return _historyDetailsModelView ?? (new HistoryDetailsModelView(Main.SelectFlight)); }
         }
     }
 }
