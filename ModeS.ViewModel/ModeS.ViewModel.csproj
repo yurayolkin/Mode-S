@@ -47,6 +47,7 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="HistoryDetailsModelView.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="MapViewModel.cs" />
     <Compile Include="Notify.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -47,6 +47,7 @@
                         </Binding>
                     </DatePicker.SelectedDate>
                 </DatePicker>
+                <Button Content="Map" Width="100" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Serial:      " Margin="5"/>
