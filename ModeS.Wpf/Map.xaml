@@ -1,9 +1,10 @@
 ﻿<Window x:Class="ModeS.Wpf.Map"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="http://schemas.telerik.com/2008/xaml/presentation"
-        Title="Map" Height="300" Width="300"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="Map" Height="900" Width="900"
         DataContext="{Binding Map, Source={StaticResource Loc}}">
     <Grid>
+        
     </Grid>
 </Window>
