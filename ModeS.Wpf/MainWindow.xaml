@@ -5,13 +5,13 @@
         xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         x:Class="ModeS.Wpf.MainWindow"
-        Title="MainWindow" Height="550" Width="535" WindowState="Maximized">
+        Title="MainWindow" Height="550" Width="935" WindowState="Maximized">
     <Window.Resources>
-        <ContextMenu x:Key="DetailsMenu">
+        <!--<ContextMenu x:Key="DetailsMenu">
             <MenuItem Header="Aircraft details" Command="{Binding AirCraftDetailsCommand}"/>
             <MenuItem Header="Aircraft history" Command="{Binding AirCraftHistoryCommand}"/>
             <MenuItem Header="Map" Command="{Binding MapCommand}"/>
-        </ContextMenu>
+        </ContextMenu>-->
     </Window.Resources>
     <Window.DataContext>
         <Binding Path="Main" Source="{StaticResource Loc}"/>
