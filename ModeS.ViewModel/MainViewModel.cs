@@ -140,10 +140,7 @@ namespace ModeS.ViewModel
 
         public RelayCommand AirCraftHistoryCommand
         {
-            get { return _aircraftHistory ?? (new RelayCommand((o) =>
-            {
-                Messager.Send("AircraftHistory", SelectFlight);
-            }, null)); }
+            get { return _aircraftHistory ?? (new RelayCommand((o) => Messager.Send("AircraftHistory", SelectFlight), null)); }
         }
 
         private RelayCommand _aircraftDetails;
@@ -153,11 +150,12 @@ namespace ModeS.ViewModel
             get { return _aircraftDetails ?? (new RelayCommand((o) => { }, null)); }
         }
 
+        
         private RelayCommand _map;
 
         public RelayCommand MapCommand
         {
-            get { return _map ?? (new RelayCommand((o) => { }, null)); }
+            get { return _map ?? (new RelayCommand((o) => Messager.Send("MapView", null), null)); }
         }
 
         private string _operatorSelect;

@@ -23,6 +23,11 @@ namespace ModeS.Wpf
                 historyView.Show();
             });
 
+            Messager.Register(this, "MapView", s =>
+            {
+                var mapWindow = new Map();
+                mapWindow.Show();
+            });
         }
     }
 }

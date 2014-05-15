@@ -5,12 +5,12 @@ namespace ModeS.ViewModel
 {
     public class ViewModelLocatror
     {
-        public ViewModelLocatror(HistoryDetailsModelView historyDetailsModelView)
+        public ViewModelLocatror()
         {
-            _historyDetailsModelView = historyDetailsModelView;
             ServiceLoactor.Register<IData, DataBase>();
             ServiceLoactor.Register<Messager>();
             ServiceLoactor.Register<HistoryDetailsModelView>();
+            ServiceLoactor.Register<MapViewModel>();
         }
 
         private MainViewModel _mainViewModel;
@@ -28,11 +28,11 @@ namespace ModeS.ViewModel
             get { return _historyDetailsModelView ?? (new HistoryDetailsModelView(Main.SelectFlight)); }
         }
 
-        private MapViewModel _mapViewModel;
 
+        private readonly MapViewModel _mapViewModel;
         public MapViewModel Map
         {
-            get { return _mapViewModel ?? (_mapViewModel = new MapViewModel()); }
+            get { return _mapViewModel ?? (new MapViewModel()); }
         }
     }
 }
