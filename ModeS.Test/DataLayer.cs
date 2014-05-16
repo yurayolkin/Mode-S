@@ -47,5 +47,14 @@ namespace ModeS.Test
             Assert.AreNotEqual(null, result);
             Assert.AreNotEqual(0, result.Count);
         }
+
+        [TestMethod]
+        public void GetCoordinateFromCityName()
+        {
+            var cityName = "Naaldwijk, NL";
+            var result = new DataBase().GetCoordination(cityName);
+            Assert.AreNotEqual(result.Lat, 0);
+            Assert.AreNotEqual(result.Lon, 0);
+        }
     }
 }

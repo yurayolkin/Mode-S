@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coordination.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="Helpers\ExtensionsMethods.cs" />

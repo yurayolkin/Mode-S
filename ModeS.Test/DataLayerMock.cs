@@ -63,5 +63,10 @@ namespace ModeS.Test
 
             return result;
         }
+
+        public Coordination GetCoordination(string cityName)
+        {
+            return new Coordination(0, 0);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace ModeS.Data
         List<string> GetOperators();
         List<string> GetSerials(string aircraftType);
         List<Flight> GetFlights(DateTime dateS, DateTime dateE, string country, string aircraft, string serial, string oper);
+        Coordination GetCoordination(string cityName);
     }
 }

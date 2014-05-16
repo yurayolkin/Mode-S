@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ModeS.Data.Helpers;
 using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient.Authentication;
 
 namespace ModeS.Data
 {
@@ -149,6 +151,36 @@ namespace ModeS.Data
                 }
             }
             return result;
+        }
+
+        public Coordination GetCoordination(string cityName)
+        {
+            var resultLat = new List<double>();
+            var resultLng = new List<double>();
+            using (var dataCoonection = new MySqlConnection(_connection.ToString()))
+            {
+                dataCoonection.Open();
+                var sqlCommand = new MySqlCommand(string.Format("SELECT Lat, Lng FROM LATLON WHERE Location='{0}'", cityName), dataCoonection);
+                var dataResult = sqlCommand.ExecuteReader();
+
+                while (dataResult.Read())
+                {
+                    var lat = dataResult.GetDouble(0);
+                    var lng = dataResult.GetDouble(1);
+
+                    if (lat != 0 && lng != 0)
+                    {
+                        resultLat.Add(lat);
+                        resultLng.Add(lng);
+                    }
+                }
+
+                var mediumLat = resultLat.Average();
+                var mediumLng = resultLng.Average();
+
+                return new Coordination(mediumLat, mediumLng);
+
+            }
         }
     }
 }
