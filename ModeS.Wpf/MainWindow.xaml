@@ -40,16 +40,11 @@
                                             Y="0.5"
                                             ElementName="PART_Ellipse" />
                                     </telerik:MapLayer.HotSpot>
-                                    <Ellipse x:Name="PART_Ellipse"
-                                Width="20"
-                                Height="20"
-                                Stroke="Red"
-                                StrokeThickness="3"
-                                Fill="Transparent">
-                                        <ToolTipService.ToolTip>
-                                            <ToolTip Content="{Binding Localizations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                        </ToolTipService.ToolTip>
-                                    </Ellipse>
+                                    <TextBlock FontSize="12" FontWeight="Bold"  Text="{Binding Caption}" Background="Red">
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip Content="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </ToolTipService.ToolTip>
+                                    </TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </telerik:InformationLayer.ItemTemplate>

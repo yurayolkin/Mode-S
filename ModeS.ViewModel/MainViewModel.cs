@@ -109,7 +109,7 @@ namespace ModeS.ViewModel
                     _selectFlight = value;
                     _selectFlight.Lat = coordinate.Lat;
                     _selectFlight.Lng = coordinate.Lng;
-                    Localizations.Add(new InformationLayer(coordinate, value.Type));
+                    Localizations.Add(new InformationLayer(coordinate, _selectFlight.ToString()));
                     OnPropertyChanged("FlightSelect");
                 }
             }

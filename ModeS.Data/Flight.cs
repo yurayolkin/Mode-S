@@ -48,5 +48,11 @@ namespace ModeS.Data
         public double Lat { get; set; }
 
         public double Lng { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Type: {4}{1}Data: {0}{1}Serial: {2}{1}Callsign: {3}{1}Location{5}", this.Gmt, Environment.NewLine,
+                this.Serial, this.CallSign, this.Type, this.Location);
+        }
     }
 }
