@@ -26,6 +26,8 @@ namespace ModeS.ViewModel
 
         public ObservableCollection<string> Serials { get; set; }
 
+        public ObservableCollection<InformationLayer> Localizations { get; set; } 
+
         public ContextMenu ContextMenu { get; set; }
 
         private DateTime _dateTimeStart;
@@ -103,7 +105,11 @@ namespace ModeS.ViewModel
             {
                 if (_selectFlight != value)
                 {
+                    var coordinate = _data.GetCoordination(value.Location);
                     _selectFlight = value;
+                    _selectFlight.Lat = coordinate.Lat;
+                    _selectFlight.Lng = coordinate.Lng;
+                    Localizations.Add(new InformationLayer(coordinate, value.Type));
                     OnPropertyChanged("FlightSelect");
                 }
             }
@@ -187,6 +193,7 @@ namespace ModeS.ViewModel
             Operators = new ObservableCollection<string>(data.GetOperators());
             Serials = new ObservableCollection<string>();
             DateTimeEnd = DateTimeStart = DateTime.Now;
+            Localizations = new ObservableCollection<InformationLayer>();
         }
 
         public MainViewModel() : this(ServiceLoactor.Resolve<IData>())

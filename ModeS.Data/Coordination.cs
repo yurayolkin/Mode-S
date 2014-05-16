@@ -4,13 +4,13 @@
     {
         public double Lat { get; private set; }
 
-        public double Lon { get; private set; }
+        public double Lng { get; private set; }
 
-        public Coordination(double lat, double lon)
+        public Coordination(double lat, double lng)
             : this()
         {
             Lat = lat;
-            Lon = lon;
+            Lng = lng;
         } 
     }
 }

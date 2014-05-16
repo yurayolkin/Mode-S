@@ -147,14 +147,26 @@ namespace ModeS.Data
                         Location = dataResult.GetString(8)
                     };
 
+                    //var position = GetCoordination(fligth.Location);
+                    //fligth.Lat = position.Lat;
+                    //fligth.Lng = position.Lng;
+
                     result.Add(fligth);
                 }
             }
             return result;
         }
 
+        private readonly Dictionary<string, Coordination> _coordinations = new Dictionary<string, Coordination>(); 
+
         public Coordination GetCoordination(string cityName)
         {
+
+            if (_coordinations.ContainsKey(cityName))
+            {
+                return _coordinations[cityName];
+            }
+
             var resultLat = new List<double>();
             var resultLng = new List<double>();
             using (var dataCoonection = new MySqlConnection(_connection.ToString()))
@@ -175,10 +187,16 @@ namespace ModeS.Data
                     }
                 }
 
+                if (resultLat.Count == 0 || resultLng.Count == 0)
+                {
+                    return new Coordination(0, 0);
+                }
+
                 var mediumLat = resultLat.Average();
                 var mediumLng = resultLng.Average();
-
-                return new Coordination(mediumLat, mediumLng);
+                var result = new Coordination(mediumLat, mediumLng);
+                _coordinations.Add(cityName, result);
+                return result;
 
             }
         }

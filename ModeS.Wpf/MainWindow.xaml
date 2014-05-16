@@ -23,6 +23,37 @@
                     <telerik:RadMap.Provider>
                         <telerik:OpenStreetMapProvider/>
                     </telerik:RadMap.Provider>
+                    <telerik:InformationLayer x:Name="InformationLayer" ItemsSource="{Binding Localizations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <telerik:InformationLayer.DataMappings>
+                            <telerik:DataMapping FieldName="Location"
+                                    ValueMember="Location" />
+                            <telerik:DataMapping FieldName="BaseZoomLevel"
+                                    ValueMember="ZoomLevel" />
+                            <telerik:DataMapping FieldName="ZoomRange"
+                                    ValueMember="ZoomRange" />
+                        </telerik:InformationLayer.DataMappings>
+                        <telerik:InformationLayer.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <telerik:MapLayer.HotSpot>
+                                        <telerik:HotSpot X="0.5"
+                                            Y="0.5"
+                                            ElementName="PART_Ellipse" />
+                                    </telerik:MapLayer.HotSpot>
+                                    <Ellipse x:Name="PART_Ellipse"
+                                Width="20"
+                                Height="20"
+                                Stroke="Red"
+                                StrokeThickness="3"
+                                Fill="Transparent">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Content="{Binding Localizations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </ToolTipService.ToolTip>
+                                    </Ellipse>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:InformationLayer.ItemTemplate>
+                    </telerik:InformationLayer>
                 </telerik:RadMap>
             </telerikDocking:RadDocking.DocumentHost>
             <telerikDocking:RadSplitContainer InitialPosition="DockedLeft" Width="150">

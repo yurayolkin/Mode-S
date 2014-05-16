@@ -41,6 +41,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coordination.cs" />
@@ -48,6 +52,7 @@
     <Compile Include="Flight.cs" />
     <Compile Include="Helpers\ExtensionsMethods.cs" />
     <Compile Include="IData.cs" />
+    <Compile Include="InformationLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -43,6 +43,10 @@ namespace ModeS.Data
         /// <summary>
         /// Gets current location of aircraft.
         /// </summary>
-        public string Location { get; set; }        
+        public string Location { get; set; }
+
+        public double Lat { get; set; }
+
+        public double Lng { get; set; }
     }
 }

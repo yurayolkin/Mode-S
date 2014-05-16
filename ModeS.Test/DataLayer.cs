@@ -54,7 +54,7 @@ namespace ModeS.Test
             var cityName = "Naaldwijk, NL";
             var result = new DataBase().GetCoordination(cityName);
             Assert.AreNotEqual(result.Lat, 0);
-            Assert.AreNotEqual(result.Lon, 0);
+            Assert.AreNotEqual(result.Lng, 0);
         }
     }
 }
