@@ -14,20 +14,5 @@ namespace ModeS.Wpf
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            Messager.Register(this, "AircraftHistory", s =>
-            {
-                var historyView = new HistoryView();
-                historyView.Show();
-            });
-
-            Messager.Register(this, "MapView", s =>
-            {
-                var mapWindow = new Map();
-                mapWindow.Show();
-            });
-        }
     }
 }

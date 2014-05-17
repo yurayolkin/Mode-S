@@ -54,7 +54,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CoordinationServiceTest.cs" />
     <Compile Include="DataLayer.cs" />
     <Compile Include="DataLayerMock.cs" />
     <Compile Include="MainViewModelTest.cs" />

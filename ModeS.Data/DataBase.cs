@@ -104,7 +104,7 @@ namespace ModeS.Data
         public List<Flight> GetFlights(DateTime dateS, DateTime dateE, string country, string aircraft, string serial, string oper)
         {
             var sqlRequest = new StringBuilder();
-            sqlRequest.Append("SELECT  * FROM AlertSResults ");
+            sqlRequest.Append("SELECT DISTINCT * FROM AlertSResults ");
             sqlRequest.Append(string.Format("WHERE Date >= '{0}' AND Date <= '{1}'", dateS.SqlDate(), dateE.SqlDate()));
 
             if (!string.IsNullOrEmpty(country))
@@ -154,7 +154,7 @@ namespace ModeS.Data
                     result.Add(fligth);
                 }
             }
-            return result;
+            return Flight.DistinctByDate(result);
         }
 
         private readonly Dictionary<string, Coordination> _coordinations = new Dictionary<string, Coordination>(); 

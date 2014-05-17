@@ -40,11 +40,7 @@
                                             Y="0.5"
                                             ElementName="PART_Ellipse" />
                                     </telerik:MapLayer.HotSpot>
-                                    <TextBlock FontSize="8" FontWeight="Bold"  Text="{Binding Caption}" Background="Red">
-                                    <ToolTipService.ToolTip>
-                                        <ToolTip Content="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    </ToolTipService.ToolTip>
-                                    </TextBlock>
+                                    <DataGrid ItemsSource="{Binding Flights}"></DataGrid>
                                 </Grid>
                             </DataTemplate>
                         </telerik:InformationLayer.ItemTemplate>

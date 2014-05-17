@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModeS.Data;
 
@@ -55,6 +56,17 @@ namespace ModeS.Test
             var result = new DataBase().GetCoordination(cityName);
             Assert.AreNotEqual(result.Lat, 0);
             Assert.AreNotEqual(result.Lng, 0);
+        }
+
+        [TestMethod]
+        public void DistinctFlightByDate()
+        {
+            var flights = new List<Flight>();
+            flights.Add(new Flight() {Type = "E3-A", Gmt = new DateTime(1999, 9, 9, 0, 0, 0)});
+            flights.Add(new Flight() {Type = "E3-A", Gmt = new DateTime(1999, 9, 9, 0, 0, 0)});
+            flights.Add(new Flight() { Type = "E3-A", Gmt = new DateTime(1999, 2, 9, 0, 0, 0) });
+            var result = Flight.DistinctByDate(flights);
+            Assert.AreEqual(2, result.Count);
         }
     }
 }
