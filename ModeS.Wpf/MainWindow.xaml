@@ -62,7 +62,7 @@
                     </telerik:InformationLayer>
                 </telerik:RadMap>
             </telerikDocking:RadDocking.DocumentHost>
-            <telerikDocking:RadSplitContainer InitialPosition="DockedLeft" Width="150">
+            <telerikDocking:RadSplitContainer InitialPosition="DockedLeft" Width="200">
                 <telerikDocking:RadPaneGroup>
                     <telerikDocking:RadPane Header="Command">
                         <StackPanel Orientation="Vertical">
@@ -95,11 +95,13 @@
                                 </DatePicker.SelectedDate>
                             </DatePicker>
                             <Button Margin="5" Content="Select" Command="{Binding QueryCommand}"/>
+                            <Button Margin="5" Content="Show" Command="{Binding ShowMapCommand}"/>
+                            <Button Margin="5" Content="Clear" Command="{Binding Clear}"/>
                         </StackPanel>
                     </telerikDocking:RadPane>
                 </telerikDocking:RadPaneGroup>
             </telerikDocking:RadSplitContainer>
-            <telerikDocking:RadSplitContainer InitialPosition="DockedBottom">
+            <telerikDocking:RadSplitContainer InitialPosition="DockedBottom" Height="200">
                 <telerikDocking:RadPaneGroup>
                     <telerikDocking:RadPane Header="DataBase">
                         <DataGrid ItemsSource="{Binding Flights, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectFlight}"/>

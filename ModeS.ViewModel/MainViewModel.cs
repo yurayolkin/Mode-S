@@ -6,9 +6,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Proxies;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ModeS.Data;
 using ModeS.ViewModel.Core;
 
@@ -103,6 +105,10 @@ namespace ModeS.ViewModel
             get { return _selectFlight; }
             set
             {
+                if (_selectFlight == null)
+                {
+                    return;
+                }
                 if (_selectFlight != value)
                 {
                     var coordinate = _data.GetCoordination(value.Location);
@@ -166,6 +172,49 @@ namespace ModeS.ViewModel
             get { return _map ?? (new RelayCommand((o) => Messager.Send("MapView", null), null)); }
         }
 
+        private RelayCommand _showMapCommand;
+
+        public RelayCommand ShowMapCommand
+        {
+            get
+            {
+                return _showMapCommand ?? (new RelayCommand((o) =>
+                {
+                    var dispatcher = Application.Current.Dispatcher;
+                    Task.Factory.StartNew(() =>
+                    {
+                        var location = Flights.Select(fl => fl.Location).Distinct();
+                        foreach (var loc in location)
+                        {
+                            var selectFlight =
+                                Flights.Where(fl => fl.Location == loc)
+                                    .OrderByDescending(fl => fl.Gmt)
+                                    .ToList();
+                            var coordinate = _data.GetCoordination(loc);
+                            var info = new InformationLayer(coordinate, string.Empty, selectFlight);
+
+                            dispatcher.Invoke(Del, DispatcherPriority.Normal, info);
+
+                        }
+
+                    });
+                }, null));
+            }
+        }
+
+        private RelayCommand _clearMap;
+
+        public RelayCommand Clear
+        {
+            get
+            {
+                return _clearMap ?? (new RelayCommand((o) => this.Localizations.Clear(), null));
+            }
+        }
+
+
+        public Action<InformationLayer> Del;
+
         private string _operatorSelect;
 
         public string OpatorSelect
@@ -195,7 +244,10 @@ namespace ModeS.ViewModel
             Operators = new ObservableCollection<string>(data.GetOperators());
             Serials = new ObservableCollection<string>();
             DateTimeEnd = DateTimeStart = DateTime.Now;
+            Del = new Action<InformationLayer>((o) => Localizations.Add(o));
+
             Localizations = new ObservableCollection<InformationLayer>();
+           
         }
 
         public MainViewModel() : this(ServiceLoactor.Resolve<IData>())
