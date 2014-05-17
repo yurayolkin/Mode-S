@@ -40,7 +40,22 @@
                                             Y="0.5"
                                             ElementName="PART_Ellipse" />
                                     </telerik:MapLayer.HotSpot>
-                                    <DataGrid ItemsSource="{Binding Flights}"></DataGrid>
+                                    <ListView ItemsSource="{Binding Flights}">
+                                        <ListView.ItemTemplate>
+                                           <DataTemplate>
+                                               <Grid>
+                                                   <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                   <TextBlock Grid.Column="0" Text="{Binding Type}"/>
+                                                   <TextBlock Grid.Column="1" Text="{Binding CallSign}"/>
+                                                   <TextBlock Grid.Column="2" Text="{Binding Gmt}"/>
+                                                </Grid>
+                                           </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
                                 </Grid>
                             </DataTemplate>
                         </telerik:InformationLayer.ItemTemplate>
