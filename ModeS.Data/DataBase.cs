@@ -162,6 +162,7 @@ namespace ModeS.Data
         public Coordination GetCoordination(string cityName)
         {
 
+            
             if (_coordinations.ContainsKey(cityName))
             {
                 return _coordinations[cityName];
@@ -182,8 +183,9 @@ namespace ModeS.Data
 
                     if (lat != 0 && lng != 0)
                     {
-                        resultLat.Add(lat);
-                        resultLng.Add(lng);
+                        //resultLat.Add(lat);
+                        //resultLng.Add(lng);
+                        return new Coordination(lat, lng);
                     }
                 }
 

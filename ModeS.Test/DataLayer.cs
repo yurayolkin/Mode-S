@@ -56,5 +56,16 @@ namespace ModeS.Test
             Assert.AreNotEqual(result.Lat, 0);
             Assert.AreNotEqual(result.Lng, 0);
         }
+
+        [TestMethod]
+        public void GetCoordinateTest()
+        {
+            var cityName = "Kiev, UA";
+            var result = new DataBase().GetCoordination(cityName);
+            Assert.AreNotEqual(result.Lat, 0);
+            Assert.AreNotEqual(result.Lng, 0);
+            Assert.AreEqual(30, Math.Round(result.Lat));
+            Assert.AreEqual(50, Math.Round(result.Lng));
+        }
     }
 }
