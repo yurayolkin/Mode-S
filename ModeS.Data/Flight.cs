@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Telerik.Windows.Controls.Gauge;
 
 namespace ModeS.Data
 {
@@ -10,6 +11,14 @@ namespace ModeS.Data
     /// </summary>
     public sealed class Flight
     {
+        public static List<Flight> DistinctByDate(List<Flight> flights)
+        {
+            var distinqtSelect = (from fl in flights select fl.Gmt).Distinct();
+            return distinqtSelect.Select(dateTime => flights.FirstOrDefault(fl => fl.Gmt == dateTime)).ToList();
+        }
+
+        public bool Show { get; set; }
+
         /// <summary>
         /// Gets serial of plain.
         /// </summary>

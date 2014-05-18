@@ -54,17 +54,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CoordinationServiceTest.cs" />
     <Compile Include="DataLayer.cs" />
     <Compile Include="DataLayerMock.cs" />
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeoLocation\GeoLocation.csproj">
-      <Project>{a0af54ab-ebee-46d6-b743-19f82378a75a}</Project>
-      <Name>GeoLocation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModeS.Data\ModeS.Data.csproj">
       <Project>{b1de9402-e913-48dd-9a0f-3dd09e90655c}</Project>
       <Name>ModeS.Data</Name>
